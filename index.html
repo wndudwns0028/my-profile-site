@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 - 홍길동</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .skill-badge {
+            @apply inline-block px-4 py-2 border border-orange-200 rounded-full text-sm text-slate-700 bg-orange-50 hover:bg-orange-100 transition-colors duration-300;
+        }
+
+        .project-card {
+            @apply group bg-white rounded-lg border border-slate-200 p-6 hover:border-orange-300 hover:shadow-lg transition-all duration-300;
+        }
+
+        .project-card:hover {
+            @apply -translate-y-2;
+        }
+
+        .btn-primary {
+            @apply inline-block px-6 py-3 bg-orange-600 text-white rounded-lg font-medium hover:bg-orange-700 transition-colors duration-300;
+        }
+
+        .btn-secondary {
+            @apply inline-block px-6 py-3 border-2 border-orange-600 text-orange-600 rounded-lg font-medium hover:bg-orange-50 transition-colors duration-300;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-2xl font-bold text-slate-800">HD</a>
+            <div class="hidden md:flex gap-8">
+                <a href="#about" class="text-slate-600 hover:text-orange-600 transition-colors">소개</a>
+                <a href="#skills" class="text-slate-600 hover:text-orange-600 transition-colors">기술</a>
+                <a href="#projects" class="text-slate-600 hover:text-orange-600 transition-colors">프로젝트</a>
+                <a href="#contact" class="text-slate-600 hover:text-orange-600 transition-colors">연락처</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden">
+                <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#about" class="block text-slate-600 hover:text-orange-600 transition-colors">소개</a>
+                <a href="#skills" class="block text-slate-600 hover:text-orange-600 transition-colors">기술</a>
+                <a href="#projects" class="block text-slate-600 hover:text-orange-600 transition-colors">프로젝트</a>
+                <a href="#contact" class="block text-slate-600 hover:text-orange-600 transition-colors">연락처</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto fade-in-up">
+            <div class="grid md:grid-cols-3 gap-8 items-start">
+                <!-- 프로필 사진 -->
+                <div class="md:col-span-1 flex justify-center md:justify-start">
+                    <div class="w-40 h-40 bg-gradient-to-br from-orange-600 to-orange-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="text-6xl font-bold text-white">홍</span>
+                    </div>
+                </div>
+                <!-- 프로필 정보 -->
+                <div class="md:col-span-2">
+                    <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-2">홍길동</h1>
+                    <p class="text-lg md:text-xl text-orange-600 font-medium mb-4">프론트엔드 개발자</p>
+                    <p class="text-base text-slate-600 mb-6 leading-relaxed">
+                        사용자 경험을 생각하는 개발자입니다. 모던 웹 기술과 디자인을 사랑하며, 지속적인 학습과 성장을 추구합니다.
+                    </p>
+                    <div class="flex gap-4 flex-wrap mb-6">
+                        <a href="mailto:hello@example.com" class="inline-flex items-center gap-2 text-slate-700 hover:text-orange-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                            <span>hello@example.com</span>
+                        </a>
+                        <a href="https://github.com/username" target="_blank" class="inline-flex items-center gap-2 text-slate-700 hover:text-orange-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.544 2.914 1.19.092-.926.35-1.557.636-1.917-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.578 9.578 0 0110 4.812c.852 0 1.687.114 2.484.336 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C17.137 18.195 20 14.442 20 10.017 20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                    <a href="#contact" class="btn-primary inline-block">연락하기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - 주요 경력 -->
+    <section id="about" class="py-20 px-6 bg-slate-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12">주요 경력</h2>
+            <div class="space-y-6 fade-in-up" style="animation-delay: 0.1s;">
+                <!-- 경력 1 -->
+                <div class="bg-white rounded-lg p-6 border border-slate-200 hover:border-orange-300 transition-colors">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-full bg-orange-100">
+                                <svg class="h-5 w-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-slate-900">프론트엔드 개발자</h3>
+                            <p class="text-sm text-orange-600 font-medium">ABC 스타트업 · 2022년 ~ 현재</p>
+                            <p class="text-slate-600 mt-2">React, TypeScript를 사용한 웹 애플리케이션 개발 및 유지보수</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 경력 2 -->
+                <div class="bg-white rounded-lg p-6 border border-slate-200 hover:border-orange-300 transition-colors">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-full bg-orange-100">
+                                <svg class="h-5 w-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-slate-900">주니어 웹 개발자</h3>
+                            <p class="text-sm text-orange-600 font-medium">XYZ 회사 · 2021년 ~ 2022년</p>
+                            <p class="text-slate-600 mt-2">HTML, CSS, JavaScript를 사용한 웹사이트 구축 및 유지보수</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 경력 3 -->
+                <div class="bg-white rounded-lg p-6 border border-slate-200 hover:border-orange-300 transition-colors">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-full bg-orange-100">
+                                <svg class="h-5 w-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-slate-900">웹 개발 교육 수료</h3>
+                            <p class="text-sm text-orange-600 font-medium">온라인 부트캠프 · 2021년</p>
+                            <p class="text-slate-600 mt-2">프론트엔드 개발의 기초부터 심화까지 전반적인 교육 이수</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-slate-900 mb-12">기술 스택</h2>
+            <div class="flex flex-wrap gap-3 fade-in-up max-w-2xl" style="animation-delay: 0.1s;">
+                <!-- TODO: 본인 기술로 수정 -->
+                <span class="skill-badge">HTML</span>
+                <span class="skill-badge">CSS</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">React</span>
+                <span class="skill-badge">Tailwind CSS</span>
+                <span class="skill-badge">Git</span>
+                <span class="skill-badge">TypeScript</span>
+                <span class="skill-badge">REST API</span>
+                <span class="skill-badge">Responsive Design</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-slate-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-slate-900 mb-12">프로젝트</h2>
+            <div class="grid md:grid-cols-3 gap-6 fade-in-up" style="animation-delay: 0.1s;">
+                <!-- TODO: 실제 프로젝트로 수정 -->
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="flex items-center justify-center w-12 h-12 bg-orange-100 rounded-lg mb-4">
+                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4m0 6v2a2 2 0 01-2 2h-2.5a1 1 0 00-.8.4l-1.9 2.533a1 1 0 01-1.6 0l-1.9-2.533a1 1 0 00-.8-.4H5a2 2 0 01-2-2v-6.5a1 1 0 00-1-1H1"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">포트폴리오 사이트</h3>
+                    <p class="text-slate-600 mb-4">Tailwind CSS와 Vanilla JS를 사용하여 만든 반응형 포트폴리오 웹사이트</p>
+                    <div class="flex gap-2 mb-4 flex-wrap">
+                        <span class="text-xs bg-orange-50 text-orange-700 px-2 py-1 rounded">HTML</span>
+                        <span class="text-xs bg-orange-50 text-orange-700 px-2 py-1 rounded">CSS</span>
+                        <span class="text-xs bg-orange-50 text-orange-700 px-2 py-1 rounded">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/username/portfolio" target="_blank" class="text-orange-600 hover:text-indigo-700 font-medium inline-flex items-center gap-2">
+                        GitHub에서 보기
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="flex items-center justify-center w-12 h-12 bg-orange-100 rounded-lg mb-4">
+                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Todo 앱</h3>
+                    <p class="text-slate-600 mb-4">React와 Context API를 사용한 로컬 스토리지 기반의 할일 관리 애플리케이션</p>
+                    <div class="flex gap-2 mb-4 flex-wrap">
+                        <span class="text-xs bg-orange-50 text-orange-700 px-2 py-1 rounded">React</span>
+                        <span class="text-xs bg-orange-50 text-orange-700 px-2 py-1 rounded">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/username/todo-app" target="_blank" class="text-orange-600 hover:text-indigo-700 font-medium inline-flex items-center gap-2">
+                        GitHub에서 보기
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="flex items-center justify-center w-12 h-12 bg-orange-100 rounded-lg mb-4">
+                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">날씨 앱</h3>
+                    <p class="text-slate-600 mb-4">OpenWeather API를 활용한 실시간 날씨 정보 조회 애플리케이션</p>
+                    <div class="flex gap-2 mb-4 flex-wrap">
+                        <span class="text-xs bg-orange-50 text-orange-700 px-2 py-1 rounded">API</span>
+                        <span class="text-xs bg-orange-50 text-orange-700 px-2 py-1 rounded">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/username/weather-app" target="_blank" class="text-orange-600 hover:text-indigo-700 font-medium inline-flex items-center gap-2">
+                        GitHub에서 보기
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-slate-50">
+        <div class="max-w-4xl mx-auto text-center fade-in-up" style="animation-delay: 0.1s;">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">함께 일하고 싶으신가요?</h2>
+            <p class="text-lg text-slate-600 mb-12">언제든지 연락 주세요. 새로운 기회를 항상 환영합니다!</p>
+            <a href="mailto:hello@example.com" class="btn-primary inline-block mb-8">연락하기</a>
+            <div class="flex gap-6 justify-center flex-wrap">
+                <!-- TODO: 본인 이메일/GitHub 정보로 수정 -->
+                <a href="mailto:hello@example.com" class="flex items-center gap-3 px-6 py-3 bg-white border border-slate-200 rounded-lg hover:border-orange-300 hover:shadow-md transition-all duration-300">
+                    <svg class="w-5 h-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                    <span class="text-slate-700 font-medium">hello@example.com</span>
+                </a>
+                <a href="https://github.com/username" target="_blank" class="flex items-center gap-3 px-6 py-3 bg-white border border-slate-200 rounded-lg hover:border-orange-300 hover:shadow-md transition-all duration-300">
+                    <svg class="w-5 h-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.544 2.914 1.19.092-.926.35-1.557.636-1.917-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.578 9.578 0 0110 4.812c.852 0 1.687.114 2.484.336 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C17.137 18.195 20 14.442 20 10.017 20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-slate-700 font-medium">github.com/username</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-slate-800 text-slate-300 text-center">
+        <p>&copy; 2026 홍길동. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 모바일 메뉴 토글
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 모바일 메뉴 링크 클릭 시 닫기
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer를 사용한 fade-in 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // fade-in-up 클래스가 있는 모든 요소에 observer 적용
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
